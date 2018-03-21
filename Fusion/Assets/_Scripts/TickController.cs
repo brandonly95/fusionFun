@@ -5,7 +5,7 @@ using UnityEngine;
 public class TickController : MonoBehaviour {
 
 
-	public float TickTime = .2;
+	public float TickTime = .2f;
 
 	private float oldTime;
 
@@ -19,11 +19,14 @@ public class TickController : MonoBehaviour {
 	void Update () {
 
 
-		if (Time.time - oldTime > .2) {
+		if (Time.time - oldTime > .4) {
 		
 		
-			GameObject[] gos = (GameObject[])GameObject.FindObjectsOfType(typeof(GameObject));
+			GameObject[] gos = (GameObject[])GameObject.FindGameObjectsWithTag ("Tickable");
 			foreach (GameObject go in gos) {
+
+				Debug.Log (go.name);
+
 				if (go && go.transform.parent == null) {
 					go.gameObject.BroadcastMessage("Tick");
 				}
@@ -33,14 +36,5 @@ public class TickController : MonoBehaviour {
 		
 		}
 		
-	}
-
-	IEnumerator ticker () {
-	
-
-
-
-
-	
 	}
 }
