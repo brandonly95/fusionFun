@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TickController : MonoBehaviour {
 
-
+	/* 
+	 * SMOOTH MOVEMENT, NO LONGER USING TICKS
+	 * 
 	public float TickTime = .2f;
 
 	private float oldTime;
@@ -37,4 +39,6 @@ public class TickController : MonoBehaviour {
 		}
 		
 	}
+
+	*/
 }

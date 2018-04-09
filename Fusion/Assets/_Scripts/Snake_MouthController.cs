@@ -5,11 +5,23 @@ using UnityEngine;
 public class Snake_MouthController : MonoBehaviour
 {
 
+	public float moveSpeed = .1f;
 
 	// 0 is right, increase to 3, which is up, counting clockwise
 	public static int direction = 0;
 
-	public float moveDistance = 2f;
+	private int length = 0;
+
+	public ArrayList<Snake_Tail> snakeTailList = new ArrayList<Snake_Tail> ();
+
+
+	Rigidbody2D localRB;
+
+	void Start () {
+	
+		localRB = this.GetComponent<Rigidbody2D>();
+	
+	}
 
 	void Update ()
 	{
@@ -42,30 +54,49 @@ public class Snake_MouthController : MonoBehaviour
 	
 	}
 
-	void Tick ()
+	void FixedUpdate ()
 	{
 		
 		if (direction == 0) {
 		
-			transform.position = transform.position + new Vector3 (moveDistance, 0, 0);
+			localRB.velocity = new Vector2 (moveSpeed, 0);
 		
 		}
 
 		if (direction == 1) {
 
-			transform.position = transform.position + new Vector3 (0, -1 * moveDistance, 0);
+			localRB.velocity = new Vector2 (0, -1 * moveSpeed);
 
 		}
 
 		if (direction == 2) {
 
-			transform.position = transform.position + new Vector3 (-1 * moveDistance, 0, 0);
+			localRB.velocity = new Vector2 (-1 * moveSpeed, 0);
 
 		}
 
 		if (direction == 3) {
 
-			transform.position = transform.position + new Vector3 (0, moveDistance, 0);
+			localRB.velocity = new Vector2 (0, moveSpeed);
+
+		}
+	
+	}
+
+
+	void OnTriggerEnter(Collider trigger) {
+	
+		if (trigger.gameObject.tag == "Food") {
+		
+			trigger.gameObject.SetActive (false);
+
+			length++;
+
+			if (length % 2 == 0) {
+			
+				
+			
+			}
 
 		}
 	
