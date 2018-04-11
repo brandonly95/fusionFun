@@ -5,6 +5,53 @@ using UnityEngine;
 public class Snake_MouthController : MonoBehaviour
 {
 
+	public GameObject snakeBody;
+
+	public int SNAKE_DISTANCE;
+
+
+	public class snakeSegment
+	{
+
+
+		public GameObject GO;
+
+		public void update (Vector2 newPosition)
+		{
+		
+			GO.transform.position = newPosition;
+		
+		}
+
+	}
+
+	void addBody ()
+	{
+
+		snakeSegment newSegment;
+
+		newSegment.GO = Instantiate (newSegment);
+
+		segmentList.Add (newSegment);
+
+	}
+
+	void updateBody() {
+	
+		int counter = 1;
+
+
+
+		foreach (snakeSegment segment in segmentList) {
+
+			segment.update (posList[SNAKE_DISTANCE] * counter);
+		
+			counter++;
+		}
+	
+	
+	}
+
 	public float moveSpeed = .1f;
 
 	// 0 is right, increase to 3, which is up, counting clockwise
@@ -12,16 +59,22 @@ public class Snake_MouthController : MonoBehaviour
 
 	private int length = 0;
 
-	public ArrayList<Snake_Tail> snakeTailList = new ArrayList<Snake_Tail> ();
+	public List<snakeSegment> segmentList;
+
+	public List<Vector2> posList;
 
 
 	Rigidbody2D localRB;
 
-	void Start () {
+	void Start ()
+	{
 	
-		localRB = this.GetComponent<Rigidbody2D>();
+		localRB = this.GetComponent<Rigidbody2D> ();
 	
 	}
+
+
+
 
 	void Update ()
 	{
@@ -49,6 +102,8 @@ public class Snake_MouthController : MonoBehaviour
 			transform.rotation = Quaternion.Euler (0, 0, 0);
 
 		}
+
+
 	
 	
 	
@@ -80,11 +135,23 @@ public class Snake_MouthController : MonoBehaviour
 			localRB.velocity = new Vector2 (0, moveSpeed);
 
 		}
+
+		posList.Add (this.transform.position);
+
+
+		if (posList.Count > length * 5) {
+			
+			posList.Remove (posList.FindLast);
+		
+		}
+
+		updateBody ();
 	
 	}
 
 
-	void OnTriggerEnter(Collider trigger) {
+	void OnTriggerEnter (Collider trigger)
+	{
 	
 		if (trigger.gameObject.tag == "Food") {
 		
@@ -94,7 +161,7 @@ public class Snake_MouthController : MonoBehaviour
 
 			if (length % 2 == 0) {
 			
-				
+				addBody ();
 			
 			}
 
