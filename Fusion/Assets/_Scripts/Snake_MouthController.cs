@@ -11,7 +11,10 @@ public class Snake_MouthController : MonoBehaviour
 
 	public List<snakeSegment> segmentList;
 
+
 	public float moveSpeed = .1f;
+
+	public float minimumMovement = .259f;
 
 	// 0 is right, increase to 3, which is up, counting clockwise
 	public static int direction = 0;
@@ -96,9 +99,8 @@ public class Snake_MouthController : MonoBehaviour
 			localRB.velocity = new Vector2 (0, moveSpeed);
 
 		}
-			
 
-		if (posList.Count == 0 || Mathf.Abs(((Vector2)this.transform.position - posList [0]).magnitude) < 1)
+		if (posList.Count == 0 || Mathf.Abs(((Vector2)this.transform.position - posList [0]).magnitude) > minimumMovement)
 			posList.Insert (0,this.transform.position);
 
 
