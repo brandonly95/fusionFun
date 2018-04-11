@@ -9,57 +9,16 @@ public class Snake_MouthController : MonoBehaviour
 
 	public int SNAKE_DISTANCE;
 
-
-	public class snakeSegment
-	{
-
-
-		public GameObject GO;
-
-		public void update (Vector2 newPosition)
-		{
-		
-			GO.transform.position = newPosition;
-		
-		}
-
-	}
-
-	void addBody ()
-	{
-
-		snakeSegment newSegment;
-
-		newSegment.GO = Instantiate (newSegment);
-
-		segmentList.Add (newSegment);
-
-	}
-
-	void updateBody() {
-	
-		int counter = 1;
-
-
-
-		foreach (snakeSegment segment in segmentList) {
-
-			segment.update (posList[SNAKE_DISTANCE] * counter);
-		
-			counter++;
-		}
-	
-	
-	}
+	public List<snakeSegment> segmentList;
 
 	public float moveSpeed = .1f;
 
 	// 0 is right, increase to 3, which is up, counting clockwise
 	public static int direction = 0;
 
-	private int length = 0;
+	private int food = 0;
 
-	public List<snakeSegment> segmentList;
+
 
 	public List<Vector2> posList;
 
@@ -70,6 +29,8 @@ public class Snake_MouthController : MonoBehaviour
 	{
 	
 		localRB = this.GetComponent<Rigidbody2D> ();
+
+		segmentList = new List<snakeSegment> ();
 	
 	}
 
@@ -136,30 +97,38 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 
-		posList.Add (this.transform.position);
+
+		if (Mathf.Abs(this.transform.position - posList[0]) < 1)
+			posList.Insert (0,this.transform.position);
 
 
-		if (posList.Count > length * 5) {
-			
-			posList.Remove (posList.FindLast);
-		
+		if (posList.Count > SNAKE_DISTANCE * (segmentList.Count + 1) + 1) {
+
+			posList.RemoveAt (SNAKE_DISTANCE * (segmentList.Count + 1));
+
 		}
 
+
 		updateBody ();
+
 	
 	}
 
 
-	void OnTriggerEnter (Collider trigger)
+	void OnTriggerEnter2D (Collider2D trigger)
 	{
+
+
 	
 		if (trigger.gameObject.tag == "Food") {
-		
+
+			Debug.Log ("Ball eaten");
+
 			trigger.gameObject.SetActive (false);
 
-			length++;
+			food++;
 
-			if (length % 2 == 0) {
+			if (food % 2 == 0) {
 			
 				addBody ();
 			
@@ -167,5 +136,61 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 	
+	}
+
+
+	public class snakeSegment
+	{
+
+
+		public GameObject GO;
+
+		public void updatePos (Vector2 newPosition)
+		{
+
+			GO.transform.position = newPosition;
+
+		}
+
+	}
+
+	void addBody ()
+	{
+		Debug.Log ("Segment added");
+
+		snakeSegment newSegment = new snakeSegment ();
+
+		newSegment.GO = Instantiate (snakeBody);
+
+		newSegment.updatePos (posList[SNAKE_DISTANCE * segmentList.Count]);
+
+		newSegment.GO.SetActive (true);
+
+		segmentList.Add (newSegment);
+
+	}
+
+	void updateBody() {
+
+		int counter = 1;
+
+		if (segmentList == null) {
+
+			return;
+
+		}
+
+		foreach (snakeSegment segment in segmentList) {
+
+			Debug.Log ("Clone " + counter.ToString() + " accessing position: " + (SNAKE_DISTANCE * counter).ToString() + " of: " + (posList.Count -1).ToString ());
+
+			Debug.Log (posList [SNAKE_DISTANCE * counter]);
+
+			segment.updatePos (posList[SNAKE_DISTANCE * counter]);
+
+			counter++;
+		}
+
+
 	}
 }
