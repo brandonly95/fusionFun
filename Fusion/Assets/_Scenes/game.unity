@@ -562,12 +562,12 @@ GameObject:
   - component: {fileID: 1314079976}
   - component: {fileID: 1314079975}
   m_Layer: 0
-  m_Name: Snake_Mouth (1)
+  m_Name: Snake_Body
   m_TagString: Tickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1314079975
 BoxCollider2D:
   m_ObjectHideFlags: 0
