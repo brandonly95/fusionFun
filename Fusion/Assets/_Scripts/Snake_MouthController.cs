@@ -162,7 +162,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		newSegment.GO = Instantiate (snakeBody);
 
-		newSegment.updatePos (posList[SNAKE_DISTANCE * segmentList.Count]);
+		newSegment.updatePos (posList[(SNAKE_DISTANCE * segmentList.Count)]);
 
 		newSegment.GO.SetActive (true);
 
@@ -184,9 +184,9 @@ public class Snake_MouthController : MonoBehaviour
 
 			Debug.Log ("Clone " + counter.ToString() + " accessing position: " + (SNAKE_DISTANCE * counter).ToString() + " of: " + (posList.Count -1).ToString ());
 
-			Debug.Log (posList [SNAKE_DISTANCE * counter]);
+			Debug.Log (posList [SNAKE_DISTANCE * counter -1]);
 
-			segment.updatePos (posList[SNAKE_DISTANCE * counter]);
+			segment.updatePos (posList[SNAKE_DISTANCE * counter -1]);
 
 			counter++;
 		}
