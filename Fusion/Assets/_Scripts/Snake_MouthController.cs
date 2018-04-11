@@ -96,9 +96,9 @@ public class Snake_MouthController : MonoBehaviour
 			localRB.velocity = new Vector2 (0, moveSpeed);
 
 		}
+			
 
-
-		if (Mathf.Abs(this.transform.position - posList[0]) < 1)
+		if (posList.Count == 0 || Mathf.Abs(((Vector2)this.transform.position - posList [0]).magnitude) < 1)
 			posList.Insert (0,this.transform.position);
 
 

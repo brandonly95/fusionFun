@@ -1288,7 +1288,7 @@ BoxCollider2D:
   m_Offset: {x: -0.23, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0.14, z: 0, w: 0.13}
-    pivot: {x: 0.5391202, y: 0.5019596}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 5.75, y: 5.75}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
@@ -2328,9 +2328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e838f06b77146bb807a1c06a046c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snakeBody: {fileID: 1314079974}
+  snakeBody: {fileID: 0}
   SNAKE_DISTANCE: 20
-  moveSpeed: 7
+  moveSpeed: 10
   posList: []
 --- !u!61 &2145458384
 BoxCollider2D:
