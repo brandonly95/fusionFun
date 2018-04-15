@@ -124,7 +124,7 @@ public class Snake_MouthController : MonoBehaviour
 	
 		if (trigger.gameObject.tag == "Food") {
 
-			Debug.Log ("Ball eaten");
+			//Debug.Log ("Ball eaten");
 
 			trigger.gameObject.SetActive (false);
 
@@ -158,7 +158,7 @@ public class Snake_MouthController : MonoBehaviour
 
 	void addBody ()
 	{
-		Debug.Log ("Segment added");
+		//Debug.Log ("Segment added");
 
 		snakeSegment newSegment = new snakeSegment ();
 
@@ -184,9 +184,9 @@ public class Snake_MouthController : MonoBehaviour
 
 		foreach (snakeSegment segment in segmentList) {
 
-			Debug.Log ("Clone " + counter.ToString() + " accessing position: " + (SNAKE_DISTANCE * counter).ToString() + " of: " + (posList.Count -1).ToString ());
+			//Debug.Log ("Clone " + counter.ToString() + " accessing position: " + (SNAKE_DISTANCE * counter).ToString() + " of: " + (posList.Count -1).ToString ());
 
-			Debug.Log (posList [SNAKE_DISTANCE * counter -1]);
+			//Debug.Log (posList [SNAKE_DISTANCE * counter -1]);
 
 			segment.updatePos (posList[SNAKE_DISTANCE * counter -1]);
 
