@@ -28,12 +28,17 @@ public class Snake_MouthController : MonoBehaviour
 
 	Rigidbody2D localRB;
 
+	//audio
+	public AudioSource audioSource;
+
+
 	void Start ()
 	{
 	
 		localRB = this.GetComponent<Rigidbody2D> ();
 
 		segmentList = new List<snakeSegment> ();
+	
 	
 	}
 
@@ -125,6 +130,9 @@ public class Snake_MouthController : MonoBehaviour
 		if (trigger.gameObject.tag == "Food") {
 
 			//Debug.Log ("Ball eaten");
+
+			//add sound for eating
+			audioSource.Play();
 
 			trigger.gameObject.SetActive (false);
 
