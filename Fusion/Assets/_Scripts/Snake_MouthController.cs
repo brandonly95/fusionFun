@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Snake_MouthController : MonoBehaviour
 {
@@ -37,7 +38,13 @@ public class Snake_MouthController : MonoBehaviour
 
 	public float bodyOpacity = 1;
 
+	public Text score;
 
+	int currScore;
+
+	public Text snakeLength;
+
+	int currSnakeLen;
 
 	public List<Vector2> posList;
 
@@ -60,11 +67,22 @@ public class Snake_MouthController : MonoBehaviour
 
 		phaseTicks = PHASE_TICKS;
 	
+		score.text = "Score: 0";
+
+		snakeLength.text = "Snake Length: 1";
+
+		currSnakeLen = 1;
+
+		currScore = 0;
 	
 	}
 
 
-
+	void updateSnakeNums()
+	{
+		score.text = "Score: " + currScore;
+		snakeLength.text = "Snake Length: " + currSnakeLen;
+	}
 
 	void Update ()
 	{
@@ -99,7 +117,7 @@ public class Snake_MouthController : MonoBehaviour
 		
 		}
 
-
+		updateSnakeNums ();
 	
 	
 	
@@ -194,6 +212,8 @@ public class Snake_MouthController : MonoBehaviour
 			trigger.gameObject.SetActive (false);
 
 			food++;
+
+			currSnakeLen++;
 			
 			addBody ();
 
