@@ -117,7 +117,7 @@ public class Snake_MouthController : MonoBehaviour
 		
 		}
 
-		updateSnakeNums ();
+
 	
 	
 	
@@ -182,7 +182,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		updateBody ();
 
-
+		updateSnakeNums ();
 
 
 		if (phaseTicks < PHASE_TICKS) {
