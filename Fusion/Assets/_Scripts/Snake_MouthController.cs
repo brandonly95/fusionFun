@@ -46,6 +46,10 @@ public class Snake_MouthController : MonoBehaviour
 
 	int currSnakeLen;
 
+	public Text snakeLife;
+
+	int currNumLives;
+
 	public List<Vector2> posList;
 
 
@@ -74,6 +78,10 @@ public class Snake_MouthController : MonoBehaviour
 		currSnakeLen = 1;
 
 		currScore = 0;
+
+		currNumLives = 3;
+
+		snakeLife.text = "Snake Lives: " + currNumLives;
 	
 	}
 
@@ -82,6 +90,7 @@ public class Snake_MouthController : MonoBehaviour
 	{
 		score.text = "Score: " + currScore;
 		snakeLength.text = "Snake Length: " + currSnakeLen;
+		snakeLife.text = "Snake Lives: " + currNumLives;
 	}
 
 	void Update ()
