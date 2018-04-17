@@ -9,12 +9,16 @@ public class CameraController : MonoBehaviour {
 
 	private Vector3 offset;
 
+	private float cameraSize;
+
 	public float speed;
 
 	// Use this for initialization
 	void Start () {
 
 		offset = this.transform.position;
+
+		cameraSize = this.GetComponent<Camera> ().orthographicSize;
 
 
 	}
@@ -26,6 +30,8 @@ public class CameraController : MonoBehaviour {
 
 
 		this.transform.position = Vector3.Slerp(this.transform.position,finalPos,speed);
+
+		this.GetComponent<Camera> ().orthographicSize = cameraSize + .002f * Mathf.Pow(Vector2.Distance (this.transform.position, finalPos),2f);
 
 	}
 }

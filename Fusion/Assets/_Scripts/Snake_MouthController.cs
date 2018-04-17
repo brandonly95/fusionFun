@@ -16,8 +16,10 @@ public class Snake_MouthController : MonoBehaviour
 
 	public float minimumMovement = .259f;
 
+	public int timeWait = 0;
+
 	// 0 is right, increase to 3, which is up, counting clockwise
-	public static int direction = 0;
+	public static int direction = 3;
 
 	private int food = 0;
 
@@ -34,6 +36,7 @@ public class Snake_MouthController : MonoBehaviour
 
 	void Start ()
 	{
+		
 	
 		localRB = this.GetComponent<Rigidbody2D> ();
 
@@ -47,25 +50,25 @@ public class Snake_MouthController : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.W)) {
+		if (Input.GetKeyDown (KeyCode.W) && direction != 1) {
 		
 			direction = 3;
 			transform.rotation = Quaternion.Euler (0, 0, 90);
 		
 		}
-		if (Input.GetKeyDown (KeyCode.A)) {
+		if (Input.GetKeyDown (KeyCode.A) && direction != 0) {
 
 			direction = 2;
 			transform.rotation = Quaternion.Euler (0, 0, 180);
 
 		}
-		if (Input.GetKeyDown (KeyCode.S)) {
+		if (Input.GetKeyDown (KeyCode.S) && direction != 3) {
 
 			direction = 1;
 			transform.rotation = Quaternion.Euler (0, 0, 270);
 
 		}
-		if (Input.GetKeyDown (KeyCode.D)) {
+		if (Input.GetKeyDown (KeyCode.D) && direction != 2) {
 
 			direction = 0;
 			transform.rotation = Quaternion.Euler (0, 0, 0);
@@ -109,12 +112,16 @@ public class Snake_MouthController : MonoBehaviour
 			posList.Insert (0,this.transform.position);
 
 
-		if (posList.Count > SNAKE_DISTANCE * (segmentList.Count + 1) + 1) {
+		if (posList.Count > SNAKE_DISTANCE * (segmentList.Count + 2) + 1) {
 
-			posList.RemoveAt (SNAKE_DISTANCE * (segmentList.Count + 1));
+			posList.RemoveAt (SNAKE_DISTANCE * (segmentList.Count + 2));
 
 		}
 
+		if (timeWait > 0) {
+			localRB.velocity = Vector2.zero;
+			timeWait--;
+		}
 
 		updateBody ();
 
@@ -137,14 +144,43 @@ public class Snake_MouthController : MonoBehaviour
 			trigger.gameObject.SetActive (false);
 
 			food++;
-
-			if (food % 2 == 0) {
 			
-				addBody ();
-			
-			}
+			addBody ();
 
 		}
+
+		if (trigger.gameObject.name == "Top") {
+		
+
+			this.transform.position = new Vector2 (this.transform.position.x, -1 * this.transform.position.y + 2);
+			timeWait = 60;
+		
+		
+		}
+
+		if	(trigger.gameObject.name == "Bottom") {
+		
+			this.transform.position = new Vector2 (this.transform.position.x, -1 * this.transform.position.y - 2);
+			timeWait = 60;
+
+		}
+
+
+		if (trigger.gameObject.name == "Left") {
+		
+			this.transform.position = new Vector2 (this.transform.position.x * -1 - 2, this.transform.position.y);
+			timeWait = 60;
+		
+		}
+
+		if (trigger.gameObject.name == "Right") {
+
+			this.transform.position = new Vector2 (this.transform.position.x * -1 + 2, this.transform.position.y);
+			timeWait = 60;
+
+		}
+
+
 	
 	}
 
@@ -196,7 +232,7 @@ public class Snake_MouthController : MonoBehaviour
 
 			//Debug.Log (posList [SNAKE_DISTANCE * counter -1]);
 
-			segment.updatePos (posList[SNAKE_DISTANCE * counter -1]);
+			segment.updatePos (posList[SNAKE_DISTANCE * counter - 1]);
 
 			counter++;
 		}
