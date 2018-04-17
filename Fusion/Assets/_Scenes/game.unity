@@ -2902,6 +2902,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakeMouth: {fileID: 2145458380}
   speed: 0.04
+  maxZoom: 20
+  currentZoom: 0
+  ZOOM_PERCENT: 0.4
+  zoomSequence: 0
+  ZOOM_TOTAL_TICKS: 70
+  zoomTicks: 0
+  speedCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 80.21163
+      value: 0.06511119
+      inSlope: -0.0014322042
+      outSlope: -0.0014322042
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 84.72342
+      value: 0.02539111
+      inSlope: -0.013046351
+      outSlope: -0.013046351
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  zoomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 4.911392
+      outSlope: 4.911392
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.3981738
+      value: 0.9952257
+      inSlope: 0.06262381
+      outSlope: 0.06262381
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.99998987
+      value: 0.00043451786
+      inSlope: -0.17137448
+      outSlope: -0.17137448
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &362204185
 Prefab:
   m_ObjectHideFlags: 0
@@ -9032,7 +9080,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &1314079975
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -15363,7 +15411,42 @@ MonoBehaviour:
   SNAKE_DISTANCE: 12
   moveSpeed: 12
   minimumMovement: 0.2
-  timeWait: 0
+  WAIT_TIME: 80
+  PHASE_DISTANCE: 50
+  phaseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1.0010376
+      inSlope: -3.0945203
+      outSlope: -3.0945203
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.22566131
+      value: 0.5330269
+      inSlope: 1.2712169
+      outSlope: 1.2712169
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.7721477
+      value: 0.5355969
+      inSlope: -1.1651717
+      outSlope: -1.1651717
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1.0050771
+      value: 0.999282
+      inSlope: 0.9281351
+      outSlope: 0.9281351
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  PHASE_TICKS: 60
+  phaseTicks: 0
+  phaseDistLeft: 0
+  bodyOpacity: 1
   posList: []
   audioSource: {fileID: 1550064102}
 --- !u!50 &2145458385

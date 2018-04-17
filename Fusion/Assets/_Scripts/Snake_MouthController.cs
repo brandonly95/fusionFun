@@ -16,12 +16,26 @@ public class Snake_MouthController : MonoBehaviour
 
 	public float minimumMovement = .259f;
 
-	public int timeWait = 0;
+	public int WAIT_TIME = 100;
+
+	private int timeWait = 0;
 
 	// 0 is right, increase to 3, which is up, counting clockwise
 	public static int direction = 3;
 
 	private int food = 0;
+
+	public float PHASE_DISTANCE = 50;
+
+	public AnimationCurve phaseCurve;
+
+	public float PHASE_TICKS = 30;
+
+	public float phaseTicks;
+
+	public float phaseDistLeft;
+
+	public float bodyOpacity = 1;
 
 
 
@@ -41,6 +55,10 @@ public class Snake_MouthController : MonoBehaviour
 		localRB = this.GetComponent<Rigidbody2D> ();
 
 		segmentList = new List<snakeSegment> ();
+
+		phaseDistLeft = PHASE_DISTANCE;
+
+		phaseTicks = PHASE_TICKS;
 	
 	
 	}
@@ -73,6 +91,12 @@ public class Snake_MouthController : MonoBehaviour
 			direction = 0;
 			transform.rotation = Quaternion.Euler (0, 0, 0);
 
+		}
+		if (Input.GetKeyDown(KeyCode.Space) && phaseDistLeft == 0 && posList.Count != 0) {
+		
+			phaseDistLeft = PHASE_DISTANCE;
+			phaseTicks = 0;
+		
 		}
 
 
@@ -108,8 +132,23 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 
-		if (posList.Count == 0 || Mathf.Abs(((Vector2)this.transform.position - posList [0]).magnitude) > minimumMovement)
-			posList.Insert (0,this.transform.position);
+
+
+		if (posList.Count == 0 || Mathf.Abs (((Vector2)this.transform.position - posList [0]).magnitude) > minimumMovement) {
+
+			posList.Insert (0, this.transform.position);
+		
+			if (posList.Count > 1 && phaseDistLeft > 0) {
+				phaseDistLeft -= Mathf.Abs(Vector2.Distance (this.transform.position, posList [1]));
+				if (phaseDistLeft < 0) {
+
+					phaseDistLeft = 0;
+
+				}
+			}
+		
+		
+		}
 
 
 		if (posList.Count > SNAKE_DISTANCE * (segmentList.Count + 2) + 1) {
@@ -124,6 +163,17 @@ public class Snake_MouthController : MonoBehaviour
 		}
 
 		updateBody ();
+
+
+
+
+		if (phaseTicks < PHASE_TICKS) {
+
+			Debug.Log (phaseTicks / PHASE_TICKS);
+		
+			phaseTicks++;
+		
+		}
 
 	
 	}
@@ -153,7 +203,7 @@ public class Snake_MouthController : MonoBehaviour
 		
 
 			this.transform.position = new Vector2 (this.transform.position.x, -1 * this.transform.position.y + 2);
-			timeWait = 60;
+			timeWait = WAIT_TIME;
 		
 		
 		}
@@ -161,7 +211,7 @@ public class Snake_MouthController : MonoBehaviour
 		if	(trigger.gameObject.name == "Bottom") {
 		
 			this.transform.position = new Vector2 (this.transform.position.x, -1 * this.transform.position.y - 2);
-			timeWait = 60;
+			timeWait = WAIT_TIME;
 
 		}
 
@@ -169,14 +219,14 @@ public class Snake_MouthController : MonoBehaviour
 		if (trigger.gameObject.name == "Left") {
 		
 			this.transform.position = new Vector2 (this.transform.position.x * -1 - 2, this.transform.position.y);
-			timeWait = 60;
+			timeWait = WAIT_TIME;
 		
 		}
 
 		if (trigger.gameObject.name == "Right") {
 
 			this.transform.position = new Vector2 (this.transform.position.x * -1 + 2, this.transform.position.y);
-			timeWait = 60;
+			timeWait = WAIT_TIME;
 
 		}
 
@@ -191,11 +241,18 @@ public class Snake_MouthController : MonoBehaviour
 
 		public GameObject GO;
 
+		public float opacity;
+
 		public void updatePos (Vector2 newPosition)
 		{
 
 			GO.transform.position = newPosition;
 
+		}
+
+		public void setOpacity (float opacity) {
+		
+			GO.GetComponent<SpriteRenderer> ().color = new Color (1f, 1f, 1f, opacity);
 		}
 
 	}
@@ -233,6 +290,14 @@ public class Snake_MouthController : MonoBehaviour
 			//Debug.Log (posList [SNAKE_DISTANCE * counter -1]);
 
 			segment.updatePos (posList[SNAKE_DISTANCE * counter - 1]);
+
+			if (phaseTicks < PHASE_TICKS) {
+
+				segment.setOpacity (phaseCurve.Evaluate (phaseTicks / PHASE_TICKS));
+
+			} else {
+				segment.setOpacity (1);
+			}
 
 			counter++;
 		}

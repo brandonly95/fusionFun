@@ -9,16 +9,34 @@ public class CameraController : MonoBehaviour {
 
 	private Vector3 offset;
 
-	private float cameraSize;
+	private float DEF_CAMERA_SIZE;
 
 	public float speed;
+
+	public float maxZoom = 20;
+
+	public float currentZoom;
+
+	public float ZOOM_PERCENT = .3f;
+
+	public bool zoomSequence = false;
+
+	public float ZOOM_TOTAL_TICKS = 90;
+
+	public float zoomTicks = 0;
+
+	public AnimationCurve speedCurve;
+
+	public AnimationCurve zoomCurve;
 
 	// Use this for initialization
 	void Start () {
 
 		offset = this.transform.position;
 
-		cameraSize = this.GetComponent<Camera> ().orthographicSize;
+		DEF_CAMERA_SIZE = this.GetComponent<Camera> ().orthographicSize;
+
+		currentZoom = DEF_CAMERA_SIZE;
 
 
 	}
@@ -28,10 +46,36 @@ public class CameraController : MonoBehaviour {
 
 		Vector3 finalPos = snakeMouth.transform.position + offset;
 
+		//Debug.Log (speedCurve.Evaluate (Mathf.Abs(Vector2.Distance (finalPos, this.transform.position))));
 
-		this.transform.position = Vector3.Slerp(this.transform.position,finalPos,speed);
+		this.transform.position = Vector3.Slerp (this.transform.position, finalPos, speedCurve.Evaluate (Mathf.Abs(Vector2.Distance (finalPos, this.transform.position))));
 
-		this.GetComponent<Camera> ().orthographicSize = cameraSize + .002f * Mathf.Pow(Vector2.Distance (this.transform.position, finalPos),2f);
+
+		if (!zoomSequence && Vector2.Distance(finalPos, this.transform.position) > 30) {
+			zoomTicks = 0;
+			zoomSequence = true;
+		}
+
+
+		if (zoomSequence) {
+
+			if (zoomTicks / ZOOM_TOTAL_TICKS > .98) {
+			
+				this.GetComponent<Camera> ().orthographicSize = DEF_CAMERA_SIZE;
+				zoomSequence = false;
+			
+			} else {
+				
+				//Debug.Log ((zoomTicks / ZOOM_TOTAL_TICKS));
+			
+				currentZoom = (maxZoom - DEF_CAMERA_SIZE) * zoomCurve.Evaluate(zoomTicks/ZOOM_TOTAL_TICKS);
+
+
+				this.GetComponent<Camera> ().orthographicSize = currentZoom + DEF_CAMERA_SIZE;
+			}
+
+			zoomTicks++;
+		}
 
 	}
 }
