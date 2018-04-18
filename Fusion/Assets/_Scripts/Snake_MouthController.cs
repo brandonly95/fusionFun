@@ -42,9 +42,9 @@ public class Snake_MouthController : MonoBehaviour
 
 	int currScore;
 
-	public Text snakeLength;
+	public Text foodLeft;
 
-	int currSnakeLen;
+	int currFoodLeft;
 
 	public List<Vector2> posList;
 
@@ -69,27 +69,29 @@ public class Snake_MouthController : MonoBehaviour
 	
 		score.text = "Score: 0";
 
-		snakeLength.text = "Snake Length: 1";
+		foodLeft.text = "Food Left: 195";
 
-		currSnakeLen = 1;
+		currFoodLeft = 195;
 
 		currScore = 0;
 
-<<<<<<< HEAD
-	
-=======
-		currNumLives = 3;
 
-		snakeLife.text = "Snake Lives: " + currNumLives;
 
->>>>>>> 34be4dda308826f1bdbcbdf026e5e0785e4f4343
+	}
+
+	void increaseScore(){
+		currScore++;
+		currFoodLeft = 195;
+		updateSnakeNums ();
+		food = 0;
+
 	}
 
 
 	void updateSnakeNums()
 	{
 		score.text = "Score: " + currScore;
-		snakeLength.text = "Snake Length: " + currSnakeLen;
+		foodLeft.text = "Snake Length: " + currFoodLeft;
 	}
 
 	void Update ()
@@ -201,6 +203,10 @@ public class Snake_MouthController : MonoBehaviour
 		
 		}
 
+		if (currFoodLeft == 0) {
+			increaseScore ();
+		}
+
 	
 	}
 
@@ -221,7 +227,7 @@ public class Snake_MouthController : MonoBehaviour
 
 			food++;
 
-			currSnakeLen++;
+			currFoodLeft--;
 			
 			addBody ();
 

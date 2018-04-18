@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -12713,7 +12713,7 @@ GameObject:
   - component: {fileID: 1674260390}
   - component: {fileID: 1674260389}
   m_Layer: 5
-  m_Name: Snake Length
+  m_Name: Food Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12769,7 +12769,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Snake Length: '
+  m_Text: 'Food Left: '
 --- !u!222 &1674260390
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15971,7 +15971,7 @@ MonoBehaviour:
   phaseDistLeft: 0
   bodyOpacity: 1
   score: {fileID: 957663629}
-  snakeLength: {fileID: 1674260389}
+  foodLeft: {fileID: 1674260389}
   posList: []
   audioSource: {fileID: 1550064102}
 --- !u!50 &2145458385
