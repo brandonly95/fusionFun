@@ -113,13 +113,17 @@ public class Snake_MouthController : MonoBehaviour
 		moveSpeed = moveSpeed + 1f; //can change this depending on how cruel we want to be
 
 		SNAKE_DISTANCE--;
+
+		foreach (GameObject miniFood in GameObject.FindGameObjectsWithTag ("Food")) {
+			miniFood.SetActive (true);
+		}
 	}
 
 
 	void updateSnakeNums()
 	{
 		score.text = "Score: " + currScore;
-		foodLeft.text = "Snake Length: " + currFoodLeft;
+		foodLeft.text = "Food Left: " + currFoodLeft;
 	}
 
 	void Update ()
