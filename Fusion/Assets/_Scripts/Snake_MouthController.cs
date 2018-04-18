@@ -82,7 +82,7 @@ public class Snake_MouthController : MonoBehaviour
 		currNumLives = 3;
 
 		snakeLife.text = "Snake Lives: " + currNumLives;
-	
+
 	}
 
 
