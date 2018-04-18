@@ -79,7 +79,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		foodLeft.text = "Food Left: 195";
 
-		currFoodLeft = 10; //needs to be 195
+		currFoodLeft = 195; //needs to be 195
 
 		currScore = 0;
 
@@ -104,13 +104,15 @@ public class Snake_MouthController : MonoBehaviour
 
 		currScore++;
 
-		currFoodLeft = 10; //195
+		currFoodLeft = 195; //195
 
 		updateSnakeNums ();
 
 		food = 0;
 
 		moveSpeed = moveSpeed + 1f; //can change this depending on how cruel we want to be
+
+		SNAKE_DISTANCE--;
 	}
 
 
