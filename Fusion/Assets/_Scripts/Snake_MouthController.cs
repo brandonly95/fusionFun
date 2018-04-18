@@ -50,6 +50,10 @@ public class Snake_MouthController : MonoBehaviour
 
 	Vector3 startPos;
 
+	Quaternion startRot;
+
+	Vector3 startVel;
+
 	Rigidbody2D localRB;
 
 	//audio
@@ -58,8 +62,10 @@ public class Snake_MouthController : MonoBehaviour
 
 	void Start ()
 	{
-		
+
 		startPos = transform.position;
+
+		startRot = transform.rotation;
 
 		localRB = this.GetComponent<Rigidbody2D> ();
 
@@ -82,14 +88,26 @@ public class Snake_MouthController : MonoBehaviour
 	}
 
 	void increaseScore(){
+		
 		segmentList.Clear();
+
 		GameObject[] bodies = GameObject.FindGameObjectsWithTag("Body");
+
 		foreach(GameObject body in bodies)
 			GameObject.Destroy(body);
+
+		direction = 3;
+
 		transform.position = startPos;
+
+		transform.rotation = startRot;
+
 		currScore++;
+
 		currFoodLeft = 195;
+
 		updateSnakeNums ();
+
 		food = 0;
 
 	}
