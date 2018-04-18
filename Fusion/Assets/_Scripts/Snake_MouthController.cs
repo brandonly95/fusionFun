@@ -46,10 +46,6 @@ public class Snake_MouthController : MonoBehaviour
 
 	int currSnakeLen;
 
-	public Text snakeLife;
-
-	int currNumLives;
-
 	public List<Vector2> posList;
 
 
@@ -79,9 +75,6 @@ public class Snake_MouthController : MonoBehaviour
 
 		currScore = 0;
 
-		currNumLives = 3;
-
-		snakeLife.text = "Snake Lives: " + currNumLives;
 	
 	}
 
@@ -90,30 +83,29 @@ public class Snake_MouthController : MonoBehaviour
 	{
 		score.text = "Score: " + currScore;
 		snakeLength.text = "Snake Length: " + currSnakeLen;
-		snakeLife.text = "Snake Lives: " + currNumLives;
 	}
 
 	void Update ()
 	{
-		if (Input.GetKeyDown (KeyCode.W) && direction != 1) {
+		if (Input.GetKeyDown (KeyCode.W) && direction != 1 || Input.GetKeyDown(KeyCode.UpArrow) && direction != 1) {
 		
 			direction = 3;
 			transform.rotation = Quaternion.Euler (0, 0, 90);
 		
 		}
-		if (Input.GetKeyDown (KeyCode.A) && direction != 0) {
+		if (Input.GetKeyDown (KeyCode.A) && direction != 0 || Input.GetKeyDown(KeyCode.LeftArrow) && direction != 0) {
 
 			direction = 2;
 			transform.rotation = Quaternion.Euler (0, 0, 180);
 
 		}
-		if (Input.GetKeyDown (KeyCode.S) && direction != 3) {
+		if (Input.GetKeyDown (KeyCode.S) && direction != 3 || Input.GetKeyDown(KeyCode.DownArrow) && direction != 3) {
 
 			direction = 1;
 			transform.rotation = Quaternion.Euler (0, 0, 270);
 
 		}
-		if (Input.GetKeyDown (KeyCode.D) && direction != 2) {
+		if (Input.GetKeyDown (KeyCode.D) && direction != 2 || Input.GetKeyDown(KeyCode.RightArrow) && direction != 2) {
 
 			direction = 0;
 			transform.rotation = Quaternion.Euler (0, 0, 0);
