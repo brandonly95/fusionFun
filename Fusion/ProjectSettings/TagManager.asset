@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tickable
   - Food
+  - Body
   layers:
   - Default
   - TransparentFX

@@ -73,7 +73,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		foodLeft.text = "Food Left: 195";
 
-		currFoodLeft = 195;
+		currFoodLeft = 10; //needs to be 195
 
 		currScore = 0;
 
@@ -82,7 +82,10 @@ public class Snake_MouthController : MonoBehaviour
 	}
 
 	void increaseScore(){
-		segmentList = new List<snakeSegment> ();
+		segmentList.Clear();
+		GameObject[] bodies = GameObject.FindGameObjectsWithTag("Body");
+		foreach(GameObject body in bodies)
+			GameObject.Destroy(body);
 		transform.position = startPos;
 		currScore++;
 		currFoodLeft = 195;
