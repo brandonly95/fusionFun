@@ -75,7 +75,14 @@ public class Snake_MouthController : MonoBehaviour
 
 		currScore = 0;
 
+<<<<<<< HEAD
 	
+=======
+		currNumLives = 3;
+
+		snakeLife.text = "Snake Lives: " + currNumLives;
+
+>>>>>>> 34be4dda308826f1bdbcbdf026e5e0785e4f4343
 	}
 
 
