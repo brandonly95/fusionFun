@@ -82,6 +82,7 @@ public class Snake_MouthController : MonoBehaviour
 	}
 
 	void increaseScore(){
+		segmentList = new List<snakeSegment> ();
 		transform.position = startPos;
 		currScore++;
 		currFoodLeft = 195;
