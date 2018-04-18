@@ -104,12 +104,13 @@ public class Snake_MouthController : MonoBehaviour
 
 		currScore++;
 
-		currFoodLeft = 195;
+		currFoodLeft = 10; //195
 
 		updateSnakeNums ();
 
 		food = 0;
 
+		moveSpeed = moveSpeed + 1f; //can change this depending on how cruel we want to be
 	}
 
 
