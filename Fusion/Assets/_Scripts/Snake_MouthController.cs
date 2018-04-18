@@ -48,6 +48,7 @@ public class Snake_MouthController : MonoBehaviour
 
 	public List<Vector2> posList;
 
+	Vector3 startPos;
 
 	Rigidbody2D localRB;
 
@@ -58,7 +59,8 @@ public class Snake_MouthController : MonoBehaviour
 	void Start ()
 	{
 		
-	
+		startPos = transform.position;
+
 		localRB = this.GetComponent<Rigidbody2D> ();
 
 		segmentList = new List<snakeSegment> ();
@@ -80,6 +82,7 @@ public class Snake_MouthController : MonoBehaviour
 	}
 
 	void increaseScore(){
+		transform.position = startPos;
 		currScore++;
 		currFoodLeft = 195;
 		updateSnakeNums ();
