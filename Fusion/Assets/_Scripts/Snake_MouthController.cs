@@ -56,6 +56,8 @@ public class Snake_MouthController : MonoBehaviour
 
 	Rigidbody2D localRB;
 
+	GameObject[] foodList;
+
 	//audio
 	public AudioSource audioSource;
 
@@ -83,7 +85,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		currScore = 0;
 
-
+		foodList = new GameObject[195];
 
 	}
 
@@ -114,7 +116,13 @@ public class Snake_MouthController : MonoBehaviour
 
 		SNAKE_DISTANCE--;
 
-		foreach (GameObject miniFood in GameObject.FindGameObjectsWithTag ("Food")) {
+		resetFood ();
+
+	}
+
+	void resetFood(){
+	
+		foreach (GameObject miniFood in foodList) {
 			miniFood.SetActive (true);
 		}
 	}
@@ -254,6 +262,8 @@ public class Snake_MouthController : MonoBehaviour
 
 			//add sound for eating
 			audioSource.Play();
+
+			foodList [food] = trigger.gameObject;
 
 			trigger.gameObject.SetActive (false);
 
