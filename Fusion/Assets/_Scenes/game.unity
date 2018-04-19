@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -15974,6 +15974,7 @@ MonoBehaviour:
   foodLeft: {fileID: 1674260389}
   posList: []
   audioSource: {fileID: 1550064102}
+  ded: {fileID: 905159023}
 --- !u!50 &2145458385
 Rigidbody2D:
   serializedVersion: 4

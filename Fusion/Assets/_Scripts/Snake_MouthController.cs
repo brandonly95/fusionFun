@@ -60,7 +60,7 @@ public class Snake_MouthController : MonoBehaviour
 
 	//audio
 	public AudioSource audioSource;
-
+	public AudioSource ded;
 
 	void Start ()
 	{
@@ -306,8 +306,16 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 
+		/*  This is still in the works...
+		if (trigger.gameObject.tag == "Body") {
 
-	
+			Debug.Log ("ded");
+
+			ded.Play();
+
+			moveSpeed = 0f;
+		}
+		*/
 	}
 
 
