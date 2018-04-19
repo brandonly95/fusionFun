@@ -93,6 +93,8 @@ public class Snake_MouthController : MonoBehaviour
 		
 		segmentList.Clear();
 
+		GameObject.Destroy = GameObject.FindGameObjectWithTag ("FirstBody");
+
 		GameObject[] bodies = GameObject.FindGameObjectsWithTag("Body");
 
 		foreach(GameObject body in bodies)
@@ -306,16 +308,17 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 
-		/*  This is still in the works...
 		if (trigger.gameObject.tag == "Body") {
 
-			Debug.Log ("ded");
+			if (phaseDistLeft > 0) {
 
-			ded.Play();
+				Debug.Log ("Ded");
 
-			moveSpeed = 0f;
+				ded.Play ();
+
+				moveSpeed = 0f;
+			}
 		}
-		*/
 	}
 
 
@@ -348,6 +351,12 @@ public class Snake_MouthController : MonoBehaviour
 		snakeSegment newSegment = new snakeSegment ();
 
 		newSegment.GO = Instantiate (snakeBody);
+
+		if (segmentList.Count == 0) {
+
+			newSegment.GO.tag = "FirstBody";
+
+		}
 
 		newSegment.updatePos (posList[(SNAKE_DISTANCE * segmentList.Count)]);
 
