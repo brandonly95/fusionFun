@@ -310,7 +310,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		if (trigger.gameObject.tag == "Body") {
 
-			if (phaseDistLeft > 0) {
+			if (phaseDistLeft == 0) {
 
 				Debug.Log ("Ded");
 
