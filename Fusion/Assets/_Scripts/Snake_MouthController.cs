@@ -312,8 +312,6 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 
-		Debug.Log (phaseTicks);
-
 		if (trigger.gameObject.tag == "Body") {
 			if (phaseTicks == PHASE_TICKS) {
 
