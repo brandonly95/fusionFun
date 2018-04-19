@@ -102,6 +102,8 @@ public class Snake_MouthController : MonoBehaviour
 
 		direction = 3;
 
+		timeWait = WAIT_TIME;
+
 		transform.position = startPos;
 
 		transform.rotation = startRot;
@@ -210,11 +212,13 @@ public class Snake_MouthController : MonoBehaviour
 		
 			if (posList.Count > 1 && phaseDistLeft > 0) {
 				phaseDistLeft -= Mathf.Abs(Vector2.Distance (this.transform.position, posList [1]));
-				if (phaseDistLeft < 0) {
 
-					phaseDistLeft = 0;
+			}
 
-				}
+			if (phaseDistLeft < 0) {
+
+				phaseDistLeft = 0;
+
 			}
 		
 		
@@ -239,7 +243,7 @@ public class Snake_MouthController : MonoBehaviour
 
 		if (phaseTicks < PHASE_TICKS) {
 
-			Debug.Log (phaseTicks / PHASE_TICKS);
+			//Debug.Log (phaseTicks / PHASE_TICKS);
 		
 			phaseTicks++;
 		
@@ -308,9 +312,10 @@ public class Snake_MouthController : MonoBehaviour
 
 		}
 
-		if (trigger.gameObject.tag == "Body") {
+		Debug.Log (phaseTicks);
 
-			if (phaseDistLeft == 0) {
+		if (trigger.gameObject.tag == "Body") {
+			if (phaseTicks == PHASE_TICKS) {
 
 				Debug.Log ("Ded");
 
