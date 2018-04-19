@@ -93,7 +93,7 @@ public class Snake_MouthController : MonoBehaviour
 		
 		segmentList.Clear();
 
-		GameObject.Destroy = GameObject.FindGameObjectWithTag ("FirstBody");
+		GameObject.Destroy(GameObject.FindGameObjectWithTag ("FirstBody"));
 
 		GameObject[] bodies = GameObject.FindGameObjectsWithTag("Body");
 
