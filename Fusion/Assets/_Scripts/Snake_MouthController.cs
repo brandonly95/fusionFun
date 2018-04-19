@@ -112,9 +112,9 @@ public class Snake_MouthController : MonoBehaviour
 
 		food = 0;
 
-		moveSpeed = moveSpeed + 1f; //can change this depending on how cruel we want to be
+		moveSpeed = moveSpeed + 2f; //can change this depending on how cruel we want to be
 
-		SNAKE_DISTANCE--;
+		SNAKE_DISTANCE-=2;
 
 		resetFood ();
 
