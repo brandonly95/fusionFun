@@ -141,7 +141,7 @@ public class Snake_MouthController : MonoBehaviour
 	{
 		score.text = "Score: " + currScore;
 		foodLeft.text = "Food Left: " + currFoodLeft;
-        phaseLeft.text = "Next Phase Shift: " + phaseDistLeft;
+		phaseLeft.text = "Next Phase Shift: " + Mathf.Round(phaseDistLeft);
 	}
 
 	void Update ()

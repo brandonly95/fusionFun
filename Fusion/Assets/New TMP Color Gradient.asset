@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 2108210716, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: New TMP Color Gradient
   m_EditorClassIdentifier: 
-  topLeft: {r: 0.96862745, g: 0.5921569, b: 0.11764706, a: 1}
-  topRight: {r: 0.96862745, g: 0.5921569, b: 0.11764706, a: 1}
-  bottomLeft: {r: 1, g: 0.8235294, b: 0, a: 1}
-  bottomRight: {r: 1, g: 0.8235294, b: 0, a: 1}
+  topLeft: {r: 0.20000002, g: 0.31764707, b: 0.8862746, a: 1}
+  topRight: {r: 1, g: 1, b: 1, a: 1}
+  bottomLeft: {r: 0.5421908, g: 0.45588237, b: 1, a: 1}
+  bottomRight: {r: 0, g: 0, b: 0, a: 1}
