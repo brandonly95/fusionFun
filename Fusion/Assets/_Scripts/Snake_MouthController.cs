@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Snake_MouthController : MonoBehaviour
 {
@@ -86,6 +87,8 @@ public class Snake_MouthController : MonoBehaviour
 		currScore = 0;
 
 		foodList = new GameObject[195];
+
+        direction = 3;
 
 	}
 
@@ -320,7 +323,10 @@ public class Snake_MouthController : MonoBehaviour
 				ded.Play ();
 
 				moveSpeed = 0f;
-			}
+
+                SceneManager.LoadScene("Main Menu");
+                
+            }
 		}
 	}
 
