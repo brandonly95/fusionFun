@@ -35,6 +35,8 @@ public class Snake_MouthController : MonoBehaviour
 
 	public float phaseTicks;
 
+    public Text phaseLeft;
+
 	public float phaseDistLeft;
 
 	public float bodyOpacity = 1;
@@ -139,6 +141,7 @@ public class Snake_MouthController : MonoBehaviour
 	{
 		score.text = "Score: " + currScore;
 		foodLeft.text = "Food Left: " + currFoodLeft;
+        phaseLeft.text = "Next Phase Shift: " + phaseDistLeft;
 	}
 
 	void Update ()
